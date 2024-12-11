@@ -24,8 +24,3 @@ post_install() {
   echo "Removing Dragon Player..."
   pacman -Rs --noconfirm dragonplayer || echo "Failed to remove Dragon Player. You can keep it if it doesn't bother you, or you can remove it yourself."
 }
-
-post_remove() {
-  echo "Disabling SDDM..."
-  systemctl disable sddm.service || echo "Failed to disable SDDM."
-}
