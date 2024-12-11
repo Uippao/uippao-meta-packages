@@ -1,0 +1,28 @@
+# Maintainer: Uippao <uippao@gmail.com>
+pkgname=plasma-uippao-meta
+pkgver=1.0
+pkgrel=1
+pkgdesc="Custom meta package for the KDE Plasma desktop by Uippao"
+arch=('x86_64')
+url="https://github.com/Uippao/uippao-meta-packages"
+license=('GPL3')
+depends=('plasma-meta' 'sddm' 'dolphin' 'alacritty' 'elisa' 'gwenview' 'spectacle' 'flatpak' 'git' 'fastfetch' 'okular' 'xcursor-vanilla-dmz' 'papirus-icon-theme' 'nano' 'xdg-user-dirs' 'wine' 'w3m' 'cava' 'cmatrix' 'sl' 'wtf' 'zoxide' 'cpufetch' 'htop' 'mpv')
+makedepends=('git' 'base-devel')
+conflicts=('plasma-meta')
+
+package() {
+  pacman -S --noconfirm --needed ${depends[@]}
+  pacman -Rs --noconfirm dragonplayer
+
+  git clone https://aur.archlinux.org/yay.git "$srcdir/yay"
+  cd "$srcdir/yay"
+  makepkg -si --noconfirm
+  yay -S --noconfirm firefox-nightly-bin
+
+  systemctl enable sddm.service
+  rm -rf "$srcdir/yay"
+}
+
+pkgver() {
+  echo "1.0"
+}
