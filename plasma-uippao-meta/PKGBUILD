@@ -11,7 +11,6 @@ makedepends=('git' 'base-devel')
 conflicts=('plasma-meta')
 
 package() {
-  pacman -S --noconfirm --needed ${depends[@]}
   pacman -Rs --noconfirm dragonplayer
 
   git clone https://aur.archlinux.org/yay.git "$srcdir/yay"
