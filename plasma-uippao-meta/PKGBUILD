@@ -19,9 +19,8 @@ pkgver() {
 }
 
 post_install() {
-  echo "Enabling SDDM..."
-  systemctl enable sddm.service || echo "Failed to enable SDDM. Please enable it manually."
-
+  echo "Please remember to enable SDDM!"
+  
   echo "Removing Dragon Player..."
   pacman -Rs --noconfirm dragonplayer || echo "Failed to remove Dragon Player. You can keep it if it doesn't bother you, or you can remove it yourself."
 }
