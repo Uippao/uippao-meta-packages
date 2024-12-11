@@ -8,7 +8,7 @@ url="https://github.com/Uippao/uippao-meta-packages"
 license=('GPL3')
 depends=('plasma-meta' 'sddm' 'dolphin' 'alacritty' 'elisa' 'gwenview' 'spectacle' 'flatpak' 'git' 'fastfetch' 'okular' 'xcursor-vanilla-dmz' 'papirus-icon-theme' 'nano' 'xdg-user-dirs' 'wine' 'w3m' 'cmatrix' 'sl' 'zoxide' 'cpufetch' 'htop' 'mpv')
 makedepends=('git' 'base-devel')
-conflicts=('plasma-meta')
+conflicts=()
 
 package() { 
   : 
