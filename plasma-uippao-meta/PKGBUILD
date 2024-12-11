@@ -10,16 +10,23 @@ depends=('plasma-meta' 'sddm' 'dolphin' 'alacritty' 'elisa' 'gwenview' 'spectacl
 makedepends=('git' 'base-devel')
 conflicts=('plasma-meta')
 
-package() {
-  git clone https://aur.archlinux.org/yay.git "$srcdir/yay"
-  cd "$srcdir/yay"
-  makepkg -si --noconfirm
-  yay -S --noconfirm firefox-nightly-bin
-
-  systemctl enable sddm.service
-  rm -rf "$srcdir/yay"
+package() { 
+  : 
 }
 
 pkgver() {
   echo "1.0"
+}
+
+post_install() {
+  echo "Enabling SDDM..."
+  systemctl enable sddm.service || echo "Failed to enable SDDM. Please enable it manually."
+
+  echo "Removing Dragon Player..."
+  pacman -Rs --noconfirm dragonplayer || echo "Failed to remove Dragon Player. You can keep it if it doesn't bother you, or you can remove it yourself."
+}
+
+post_remove() {
+  echo "Disabling SDDM..."
+  systemctl disable sddm.service || echo "Failed to disable SDDM."
 }
